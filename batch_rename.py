@@ -8,7 +8,7 @@ def batch_rename(filedir):
         idx+=1
 
 if __name__ == '__main__':
-    if len(sys.argv)<2:
+    if len(sys.argv)<2 or '-h' in sys.argv[1]:
         print('Usage: batch_rename [datadir] [datadir2] ...')
     else:
         for i in range(1,len(sys.argv)):

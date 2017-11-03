@@ -9,7 +9,7 @@ def img_cvt_format(filedir,suffix='.png'):
         os.remove(os.path.join(filedir,f))
 
 if __name__ == '__main__':
-    if len(sys.argv)<3:
+    if (len(sys.argv)==2 and '-h' in sys.argv[1]) or len(sys.argv)<3:
         print('Usage: rename_dir [datadir] [siffix]')
     else:
         img_cvt_format(sys.argv[1],sys.argv[2])

@@ -85,7 +85,8 @@ class InteractiveImageSegmentation:
         while True:
             self.radius = cv2.getTrackbarPos('brush size',self.winname)
             color = mask2color(self.mask)
-            show_img = cv2.add(self.img,color/2) if self.draw_color==0 else (np.copy(self.img) if self.draw_color==1 else cv2.add(self.img,color)) 
+            alpha = 0.5 if self.draw_color==0 else (1 if self.draw_color==1 else 0)
+            show_img = (self.img*alpha + color*(1-alpha)).astype('uint8')
             cv2.circle(show_img, self.cur_mouse, self.radius, (200,200,200), (2 if self.left_mouse_down else 1))
             cv2.imshow(self.winname,show_img)
             cv2.imshow('color',color)

@@ -102,8 +102,15 @@ class InteractiveImageSegmentation:
                 cv2.putText(show_img, 'segmenting...', (10,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,255),2)
                 cv2.imshow(self.winname,show_img)
                 cv2.waitKey(1)
-                cv2.grabCut(img, self.mask, None, self.bgdModel, self.fgdModel, 1, cv2.GC_INIT_WITH_MASK)
-                self.img = np.copy(img)
+                # mask enum
+                # GC_BGD    = 0,  //背景
+                # GC_FGD    = 1,  //前景 
+                # GC_PR_BGD = 2,  //可能背景
+                # GC_PR_FGD = 3   //可能前景 
+                hist, _ = np.histogram(self.mask,[0,1,2,3,4])
+                if hist[0]+hist[2]!=0 and hist[1]+hist[3]!=0:
+                    cv2.grabCut(img, self.mask, None, self.bgdModel, self.fgdModel, 1, cv2.GC_INIT_WITH_MASK)
+                    self.img = np.copy(img)
         return key
 
 if __name__ == '__main__':

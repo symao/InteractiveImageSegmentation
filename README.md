@@ -23,3 +23,6 @@ There are some useful py scripts you can use to handle your own data. Usage:
 - 'batch_rename.py dir1 [dir2] ...' renames all images in folder with sequencial numbers.
 - 'img_cvt_format.py image_dir [suffix]' converts all images in folder to the same image format, such as '.png' '.jpg'...
 - 'video2img.py video_file save_dir [stride] [resize] [suffix]' converts a video file to a list of images.
+
+## License
+This project is released under a MIT license.
